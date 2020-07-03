@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTDL_Bai2", "CTDL_Bai2\CTDL_Bai2.csproj", "{EBEF88FC-6CE0-4E61-80A0-0C43CECF5F91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBEF88FC-6CE0-4E61-80A0-0C43CECF5F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEF88FC-6CE0-4E61-80A0-0C43CECF5F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEF88FC-6CE0-4E61-80A0-0C43CECF5F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEF88FC-6CE0-4E61-80A0-0C43CECF5F91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E54A3633-46AC-4D05-92F9-D19A8DD49DF0}
+	EndGlobalSection
+EndGlobal

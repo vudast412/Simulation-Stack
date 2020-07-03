@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stack Animation by Y. Daniel Liang</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="boxes.css" />
+
+<script src="jqueryfomat1.js"></script>
+<script src="jqueryfomat2.js"></script>
+<script src="jquerytouch.js"></script>
+<script src="jqueryformat3.js"></script> 
+<link href="jqueryalerts.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <script src="Stack.js"></script>
+    <script >
+      stack = new Stack();
+
+      function draw() {
+          var canvas = document.getElementById('canvas');
+          var context = canvas.getContext("2d");
+
+          // Reset size will clear the canvas, but not for IE9
+          canvas.width = window.innerWidth - 20;
+          canvas.height = window.innerHeight - 180;
+          context.clearRect(0, 0, canvas.width, canvas.height); // For IE 9
+
+          context.font = "14px sans-serif";
+          context.strokeStyle = "#100"; // Set a pen color
+
+          if (stack.isEmpty()) {
+              context.fillText("ngăn xếp trống", canvas.width / 2 - 50, 15);
+          }
+          else {
+              x = canvas.width / 2 - 30;
+              y = canvas.height - 30;
+              rectWidth = 40;
+              rectHeight = 20;
+
+              list = stack.list;
+              for (var i = 0; i < list.length; i++) {
+                  value = list[i];
+                  context.fillText(list[i] + "", x + 15, y + 15);
+                  context.rect(x, y, rectWidth, rectHeight);
+                  y -= rectHeight;
+              }
+              context.fillText("Top", x - 85, y + rectHeight + 10);
+              drawArrowLine(context, x - 45, y + rectHeight + 10,
+                      x, y + rectHeight + 10);
+          }
+
+          context.stroke();
+      }
+
+      function peek() {
+          if (stack.isEmpty()) {
+              jAlert("Ngăn xếp trống");
+          }
+          else {
+              jAlert("The top element is " + stack.peek());
+          }
+      }
+
+      function pop() {
+          if (stack.isEmpty()) {
+              jAlert("Ngăn xếp trống");
+          }
+          else {
+              stack.pop();
+              draw();
+          }
+      }
+
+      function push() {
+          var value = document.getElementById('value').value.trim();
+          if (value == "") {
+              jAlert("không có giá trị được nhập");
+          }
+          else {
+              stack.push(value);
+          }
+
+          draw();
+      }
+
+      function drawArrowLine(context, x1, y1, x2, y2) {
+          context.moveTo(x1, y1);
+          context.lineTo(x2, y2);
+
+          // find slope of this line
+          var slope = (y1 - y2) / (x1 - x2);
+
+          var arctan = Math.atan(slope);
+
+          // This will flip the arrow 45 off of a
+          // perpendicular line at pt x2
+          var set45 = 1.57 / 2;
+
+          // arrows should always point towards i, not i+1
+          if (x1 < x2) {
+              // add 90 degrees to arrow lines
+              set45 = -1.57 * 1.5;
+          }
+
+          // set length of arrows
+          var arrlen = 15;
+
+          // draw arrows on line
+          context.moveTo(x2, y2);
+          context.lineTo(x2 + Math.cos(arctan + set45) * arrlen,
+                  y2 + Math.sin(arctan + set45) * arrlen);
+
+          context.moveTo(x2, y2);
+          context.lineTo(x2 + Math.cos(arctan - set45) * arrlen,
+                  y2 + Math.sin(arctan - set45) * arrlen);
+      }
+    </script>
+  
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  gtag('config', 'UA-89940905-27');
+</script>
+
+
+</head>
+
+
+
+  <body onload="draw()" onresize="draw()">   
+    <h3 style="text-align:center; font: bold">Stack <a href="https://github.com/vudast412/DATV-Algroithm" >Animation</a> by 
+      <a href="https://www.facebook.com/L%E1%BA%ADp-tr%C3%ACnh-cu%E1%BB%99c-s%E1%BB%91ng-c%C3%B9ng-DATV-101699731602144/?modal=admin_todo_tour" >DATV</a></h3>
+    <p> 
+      Cách sử dụng: Nhập một giá trị và nhấp vào nút Đẩy để đẩy giá trị vào ngăn xếp.
+       Nhấp vào nút Pop để xóa phần tử trên cùng khỏi ngăn xếp.
+    </p>
+
+    <div style="margin: 0px auto; border: 1px solid #EB0D1B; text-align: right">
+      <canvas id="canvas" width="200" height="300"></canvas>
+    </div>
+    <div style="text-align: center; margin-top: 1em">
+      <span style="border: 1px solid #37826C; padding: 3px">
+        Enter a value: <input type="text" value="" id="value" style="width: 3em; text-align: right">
+        <button type="button" class="button" onclick="push()">Push</button>
+      </span>
+      <button type="button" class="button" onclick="pop()">Pop</button>
+      <button type="button" class="button" onclick="peek()">Peek</button>
+    </div>
+  </body>
+</html>
